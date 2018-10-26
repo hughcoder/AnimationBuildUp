@@ -4,22 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round"
-        android:id="@+id/iv_round"
-        />
 
     <Button
         android:id="@+id/btn1"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@color/colorAccent"
-        android:text="渐变色动画"
-        />
+        android:text="渐变色动画" />
 
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:text="弹簧式动画" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:text="旋转式动画" />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:text="缩放式动画" />
 </LinearLayout>

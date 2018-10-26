@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AnimActivity1" />
+        <activity android:name=".AnimActivity2" />
+        <activity android:name=".AnimActivity3" />
+        <activity android:name=".AnimActivity4" />
     </application>
 
 </manifest>

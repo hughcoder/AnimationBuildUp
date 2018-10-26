@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
-        android:background="@drawable/round"
-        android:text="点一下" />
+        android:background="@color/colorAccent"
+        android:text="点一下。。" />
 
 
 

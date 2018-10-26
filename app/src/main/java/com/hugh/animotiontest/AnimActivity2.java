@@ -2,68 +2,52 @@ package com.hugh.animotiontest;
 
 import android.animation.Animator;
 import android.os.Bundle;
+import android.support.animation.SpringAnimation;
+import android.support.animation.SpringForce;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class AnimActivity2 extends AppCompatActivity{
 
-    private View mContentView;
-    private View mLoadingView;
-    private int mShortAnimationDuration;
+   private Button button;
+   private TextView textView;
 
+
+    /**
+     * setDampingRatio(float dampingRatio)方法设置弹性阻尼，dampingRatio越大，
+     * 摆动次数越少，当到1的时候完全不摆动，注意它体验出来的最明显的特征是摆动次数这个概念，SpringForce类中预定义了几个dampingRatio常量：
+     *
+     *
+     * setStiffness(float stiffness)方法设置弹性的生硬度，stiffness值越小，弹簧越容易摆动，摆动的时间越长，
+     * 反之摆动时间越短，注意它体验出来的最明显的特征是摆动时间这个概念。
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activiry_anim1);
+        setContentView(R.layout.activiry_anim2);
 
-        mContentView= findViewById(R.id.content);
-        mLoadingView= findViewById(R.id.loading_spinner);
+        button=findViewById(R.id.btn_ha);
 
-        mContentView.setVisibility(View.GONE);
 
-        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
+        final SpringAnimation springAnimation = new SpringAnimation(button,SpringAnimation.TRANSLATION_Y,0);
+        springAnimation.getSpring().setStiffness(SpringForce.STIFFNESS_LOW);
+        springAnimation.getSpring().setDampingRatio(SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY);
+        springAnimation.setStartVelocity(-2000);
 
-        crossfade();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                springAnimation.cancel();
+                springAnimation.setStartValue(-700);
+                springAnimation.start();
+
+            }
+        });
     }
 
-    private void crossfade(){
-        mContentView.setAlpha(0f);
-        mContentView.setVisibility(View.VISIBLE);
 
-        mContentView.animate()
-                .alpha(1f)
-                .setDuration(1500)
-                .setListener(null);
-
-        mLoadingView.animate()
-                .alpha(1f)   //  透明度控制动画效果 alpha 浮点型值：fromAlpha 属性为动画起始时透明度 toAlpha   属性为动画结束时透明度
-//        说明:
-//        0.0表示完全透明
-//        1.0表示完全不透明
-//        以上值取0.0-1.0之间的float数据类型的数字
-                .setDuration(1500) //        duration  属性为动画持续时间
-                .setListener(new Animator.AnimatorListener() {  //这边相应时间的回调
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        mLoadingView.setVisibility(View.GONE);
-                        Log.e("ccc", "onAnimationEnd: 11111" );
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                });
-    }
 }
